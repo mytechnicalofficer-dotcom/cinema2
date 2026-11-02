@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>World Cinema – Pesan Tiket Bioskop Jakarta</title>
+<style>
+:root{--bg:#0d0d0f;--bg2:#17171a;--bg3:#232327;--tx:#f4f4f5;--mu:#9a9aa2;--red:#e50914;--red2:#b20710;--gold:#f5c518;--ok:#2fb36d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 "Helvetica Neue",Arial,sans-serif}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:#000;border-bottom:3px solid var(--red);display:flex;align-items:center;gap:24px;padding:14px 24px}
+.logo{font-weight:900;font-size:24px;letter-spacing:-.5px;cursor:pointer;background:none;border:0;padding:0}
+.logo b{color:var(--red)}
+header span.n{color:var(--mu);font-size:14px}
+header .loc{margin-left:auto;font-size:14px;color:var(--mu)}
+main{max-width:1120px;margin:0 auto;padding:24px 20px 80px}
+.hero{background:linear-gradient(100deg,#000 30%,#5a0408 100%);border-radius:6px;padding:48px 36px;margin-bottom:36px}
+.hero h1{font-size:clamp(32px,6vw,60px);line-height:1.02;margin:0 0 12px;font-weight:900;max-width:640px}
+.hero p{color:#cfcfd4;max-width:480px;margin:0}
+h2{font-size:26px;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:20px}
+.card{background:none;border:0;padding:0;text-align:left}
+.poster{aspect-ratio:2/3;border-radius:4px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font-weight:900;font-size:22px;line-height:1.05;position:relative;overflow:hidden;box-shadow:0 8px 24px #0008;transition:transform .2s}
+.card:hover .poster{transform:translateY(-4px)}
+.poster small{position:absolute;top:10px;left:10px;background:#000a;border-radius:3px;padding:2px 7px;font-size:12px;font-weight:700}
+.card .m{margin-top:10px;font-weight:700}.card .s{color:var(--mu);font-size:13px}
+.back{background:none;border:0;color:var(--mu);padding:0;margin-bottom:16px}
+.back:hover{color:var(--tx)}
+.det{display:grid;grid-template-columns:260px 1fr;gap:32px;margin-bottom:36px}
+@media(max-width:700px){.det{grid-template-columns:1fr}.det .poster{max-width:240px}header{padding:12px 16px}}
+.det h1{font-size:40px;margin:0 0 6px;line-height:1.1}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+.tag{border:1px solid #444;border-radius:3px;padding:2px 9px;font-size:13px;color:#cfcfd4}
+.th{background:var(--bg2);border-radius:6px;padding:18px 20px;margin-bottom:14px}
+.th h3{margin:0;font-size:18px}.th .a{color:var(--mu);font-size:13px;margin-bottom:12px}
+.times{display:flex;gap:10px;flex-wrap:wrap}
+.t{background:var(--bg3);border:1px solid #3a3a40;border-radius:4px;padding:8px 14px;text-align:center;min-width:92px}
+.t:hover{border-color:var(--red);background:#2a1214}
+.t b{display:block;font-size:17px}.t span{font-size:12px;color:var(--mu)}
+.steps{display:flex;gap:6px;margin-bottom:26px;flex-wrap:wrap}
+.st{padding:6px 14px;border-radius:20px;background:var(--bg2);color:var(--mu);font-size:14px}
+.st.on{background:var(--red);color:#fff}.st.done{color:var(--tx)}
+.two{display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:start}
+@media(max-width:900px){.two{grid-template-columns:1fr}}
+.sum{background:var(--bg2);border-radius:6px;padding:20px;position:sticky;top:90px}
+.sum h3{margin:0 0 4px}.sum .r{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:5px 0;color:#cfcfd4}
+.sum .tot{border-top:1px solid #3a3a40;margin-top:10px;padding-top:12px;font-size:20px;font-weight:800;color:var(--tx)}
+.btn{background:var(--red);border:0;border-radius:4px;padding:13px 22px;font-weight:800;width:100%;margin-top:14px;font-size:16px}
+.btn:hover{background:var(--red2)}.btn:disabled{background:#3a3a40;color:#888;cursor:not-allowed}
+.screen{height:42px;margin:0 auto 28px;width:80%;border-top:5px solid #fff;border-radius:50% 50% 0 0/100% 100% 0 0;background:linear-gradient(#ffffff30,transparent);text-align:center;color:var(--mu);font-size:12px;padding-top:12px;filter:drop-shadow(0 -6px 14px #fff6)}
+.seatwrap{overflow-x:auto;padding-bottom:10px}
+.rows{display:flex;flex-direction:column;gap:7px;align-items:center;min-width:560px}
+.row{display:flex;gap:6px;align-items:center}
+.rl{width:22px;color:var(--mu);font-size:13px;text-align:center}
+.seat{width:34px;height:32px;border-radius:7px 7px 3px 3px;border:0;background:#4a4a52;font-size:11px;color:#ddd;padding:0}
+.seat.p{background:#7a5c14}
+.seat:hover:not(:disabled){background:#fff;color:#000}
+.seat.sel{background:var(--red);color:#fff}
+.seat:disabled{background:#202024;color:#555;cursor:not-allowed;text-decoration:line-through}
+.gap{width:26px}
+.leg{display:flex;gap:18px;justify-content:center;margin-top:22px;font-size:13px;color:var(--mu);flex-wrap:wrap}
+.leg i{display:inline-block;width:16px;height:14px;border-radius:4px 4px 2px 2px;vertical-align:-2px;margin-right:6px}
+.fb{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.f{background:var(--bg2);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.f .e{font-size:34px}.f b{font-size:16px}.f .d{font-size:13px;color:var(--mu);flex:1}
+.q{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+.q button{width:32px;height:32px;border-radius:50%;border:1px solid #555;background:none;font-size:18px;line-height:1}
+.q button:hover{border-color:var(--red);color:var(--red)}
+.form{background:var(--bg2);border-radius:6px;padding:22px}
+.form label{display:block;font-size:13px;color:var(--mu);margin:14px 0 5px}
+.form input{width:100%;background:var(--bg);border:1px solid #3a3a40;border-radius:4px;padding:12px;color:var(--tx);font:inherit}
+.form input.bad{border-color:var(--red)}
+.form .two2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.seg{display:flex;gap:10px}
+.seg button{flex:1;padding:12px;border-radius:4px;border:1px solid #3a3a40;background:var(--bg)}
+.seg button.on{border-color:var(--red);background:#2a1214}
+.err{color:#ff6b73;font-size:13px;margin-top:6px;min-height:18px}
+.note{font-size:12px;color:var(--mu);margin-top:12px}
+.ticket{max-width:520px;margin:20px auto;background:#fff;color:#111;border-radius:10px;overflow:hidden}
+.ticket .top{background:var(--red);color:#fff;padding:18px 24px}
+.ticket .top h2{margin:0}
+.ticket .bd{padding:20px 24px}
+.ticket .r{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed #ccc;font-size:15px;gap:12px}
+.ticket .code{font:800 30px/1 monospace;letter-spacing:4px;text-align:center;padding:20px 0 6px}
+.bars{height:46px;margin:6px 0;background:repeating-linear-gradient(90deg,#111 0 2px,#fff 2px 5px,#111 5px 6px,#fff 6px 10px,#111 10px 13px,#fff 13px 15px)}
+.ok{text-align:center;margin-top:30px}.ok .ck{width:58px;height:58px;border-radius:50%;background:var(--ok);display:inline-grid;place-items:center;font-size:30px}
+header{backdrop-filter:blur(10px);background:#000c}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg)}}
+.hero{display:grid;grid-template-columns:1fr 230px;gap:36px;align-items:center;min-height:340px;position:relative;overflow:hidden;animation:fade .6s both;background:radial-gradient(circle at 85% 30%,var(--c0),transparent 62%),linear-gradient(110deg,#000,#120305)}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:2px}
+.hero .poster{transform:rotate(4deg);transition:transform .3s}.hero .poster:hover{transform:rotate(0) scale(1.03)}
+.hero p{color:#d8d8dc;margin:0 0 6px}
+.dots{display:flex;gap:8px;margin-top:24px}.dots button{width:10px;height:10px;border-radius:50%;border:0;background:#555;padding:0;transition:.3s}.dots button.on{width:30px;border-radius:6px;background:var(--red)}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding:32px 22px}.hero .poster{display:none}}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+.chip{border:1px solid #3a3a40;background:none;border-radius:20px;padding:7px 16px;transition:.2s}.chip:hover{border-color:#fff}.chip.on{background:#fff;color:#000;border-color:#fff}
+.card{animation:fade .5s both;animation-delay:calc(var(--i)*70ms)}
+.card:hover .poster{transform:perspective(600px) rotateY(-7deg) translateY(-8px);box-shadow:0 18px 36px #e5091455}
+.poster{text-shadow:0 2px 8px #000a}
+.poster:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,#ffffff2a 50%,transparent 65%);transform:translateX(-100%);transition:transform .7s;pointer-events:none}
+.card:hover .poster:after,.hero .poster:hover:after{transform:translateX(100%)}
+.t{transition:.2s}.t:hover{transform:translateY(-3px)}
+.th{transition:.2s;border-left:3px solid transparent}.th:hover{border-left-color:var(--red);background:#1d1d21}
+.f{transition:.2s}.f:hover{transform:translateY(-4px);box-shadow:0 10px 24px #000a}
+.q b{min-width:20px;text-align:center}
+.seat{transition:transform .15s,background .15s}.seat:hover:not(:disabled){transform:scale(1.18)}.seat.sel{box-shadow:0 0 14px var(--red)}
+.st{transition:.3s}
+.cc{background:linear-gradient(135deg,#e50914,#4a0508 70%,#111);border-radius:14px;padding:18px 20px;max-width:360px;margin:0 auto 18px;aspect-ratio:1.586;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 14px 34px #e5091433;font-family:monospace}
+.cc .cf{display:flex;justify-content:space-between;align-items:center;font-size:13px;text-transform:uppercase;gap:10px}
+.cc .num{font-size:clamp(17px,4.6vw,22px);letter-spacing:2px}
+.emv{width:44px;height:32px;border-radius:6px;background:linear-gradient(135deg,#f5c518,#b8860b)}
+.btn{transition:.2s}.btn:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 8px 20px #e5091466}
+.ok .ck{animation:pop .5s both}.ticket{animation:fade .7s .3s both}
+.cn{position:fixed;top:-14px;width:8px;height:14px;animation:fall var(--d) linear forwards;z-index:9;pointer-events:none}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+.mt{background:none;border:1px solid #444;border-radius:20px;padding:6px 14px;font-size:14px;margin-left:12px;white-space:nowrap}.mt:hover{border-color:var(--red)}
+.mt span{background:var(--red);border-radius:10px;padding:0 7px;font-size:12px;margin-left:4px}.mt span:empty{display:none}
+@media(max-width:700px){header .n{display:none}header{gap:12px}}
+.bdg{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1px;padding:2px 9px;border-radius:10px;margin-bottom:6px;background:#fff3;text-transform:uppercase}.bdg.old{background:#0007}
+.ticket small{color:#666}.empty{text-align:center;color:var(--mu);padding:36px 0}
+.lk{max-width:520px;margin:34px auto 0}
+footer{border-top:1px solid #222;padding:26px;text-align:center;color:var(--mu);font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <button class="logo" onclick="go('home')" aria-label="World Cinema, ke beranda">WORLD<b>CINEMA</b></button>
+  <span class="n">Film</span>
+  <span class="loc">Jakarta</span>
+  <button class="mt" onclick="openTix()">🎟️ Tiket Saya <span id="mtc"></span></button>
+</header>
+<main id="app"></main>
+<footer>© 2026 World Cinema Jakarta. Demo website, pembayaran dan tiket hanya simulasi.</footer>
+
+<script>
+/* ================= SUPABASE CONFIG =================
+   The publishable key is designed to be used in the browser.
+   Security comes from Row Level Security (see supabase.sql). */
+const SB_URL="https://pkoysanmmdzaoqqawfyr.supabase.co/rest/v1/";
+const SB_KEY="sb_publishable_4fIrDsUtoG6lVOrPpUCAiQ_cURCwlph";
+async function sb(path,opt={}){
+  const r=await fetch(SB_URL+path,{...opt,headers:{apikey:SB_KEY,"Content-Type":"application/json",...(opt.headers||{})}});
+  if(!r.ok){const e=new Error("Supabase "+r.status);e.status=r.status;throw e}
+  const t=await r.text();return t?JSON.parse(t):null;
+}
+const today=()=>new Date(Date.now()+7*36e5).toISOString().slice(0,10); // tanggal WIB (UTC+7)
+
+/* Data bawaan (cadangan jika Supabase tidak bisa dijangkau). Data asli dimuat dari database. */
+const F=[
+{id:0,t:"Hacksaw Ridge",y:2016,d:"2j 19m",g:"Perang, Drama",r:"17+",c:["#7a1f0c","#1c0a05"],ds:"Desmond Doss, seorang paramedis yang menolak memegang senjata karena keyakinannya, bertugas di Pertempuran Okinawa. Di tengah pertempuran brutal di tebing Maeda, ia menyelamatkan puluhan prajurit yang terluka tanpa membawa senjata."},
+{id:1,t:"Unbroken",y:2014,d:"2j 17m",g:"Drama, Biografi",r:"17+",c:["#0f4c75","#06121c"],ds:"Kisah nyata Louis Zamperini, atlet lari Olimpiade yang menjadi pembom Perang Dunia II. Pesawatnya jatuh di Samudra Pasifik, ia bertahan puluhan hari di rakit lalu ditahan di kamp tawanan Jepang."},
+{id:2,t:"Despicable Me",y:2010,d:"1j 35m",g:"Animasi, Komedi",r:"SU",c:["#f2c40f","#b0561a"],ds:"Gru, penjahat super yang ingin mencuri bulan, mengadopsi tiga gadis yatim demi menjalankan rencananya. Tanpa disangka, ketiganya perlahan mengubah hidup Gru bersama para Minion yang kocak."},
+{id:3,t:"Bapak Paling Jujur",y:2025,d:"1j 50m",g:"Komedi, Keluarga",r:"13+",c:["#2e7d5b","#0a1f17"],ds:"Komedi keluarga tentang seorang bapak yang berusaha tetap jujur di tengah godaan dan tekanan hidup sehari-hari. Kejujurannya justru membawa kekacauan lucu sekaligus menyentuh bagi keluarganya."},
+{id:4,t:"Top Gun",y:1986,d:"1j 50m",g:"Aksi, Drama",r:"13+",c:["#1f6fb2","#08121e"],ds:"Pete “Maverick” Mitchell, pilot tempur Angkatan Laut yang berani dan nekat, masuk sekolah pilot elite Top Gun. Ia bersaing dengan sesama pilot terbaik sambil bergulat dengan masa lalunya."},
+{id:5,t:"Agak Laen",y:2024,d:"1j 59m",g:"Komedi, Horor",r:"13+",c:["#6a1b9a","#14061c"],ds:"Empat sahabat mengelola wahana rumah hantu di pasar malam yang sepi pengunjung. Saat kejadian aneh dan mengerikan mulai muncul, wahana mereka mendadak laris."}
+];
+const T=[
+{n:"World Cinema Grand Indonesia",a:"Lt. 8, Jl. M.H. Thamrin, Jakarta Pusat",p:65000},
+{n:"World Cinema Plaza Senayan",a:"Lt. 5, Jl. Asia Afrika, Jakarta Pusat",p:60000},
+{n:"World Cinema Kota Kasablanka",a:"Lt. 3, Jl. Casablanca, Jakarta Selatan",p:55000},
+{n:"World Cinema Pondok Indah Mall",a:"Lt. 4, Jl. Metro Pondok Indah, Jakarta Selatan",p:60000},
+{n:"World Cinema Kelapa Gading",a:"Lt. 3, Jl. Boulevard Kelapa Gading, Jakarta Utara",p:50000},
+{n:"World Cinema Central Park",a:"Lt. 6, Jl. Letjen S. Parman, Jakarta Barat",p:55000}];
+const TM=["10:30","12:45","15:10","17:30","19:45","22:00"];
+const FMT=["Reguler 2D","Reguler 2D","IMAX","Reguler 2D","Dolby Atmos","Reguler 2D"];
+const FB=[
+{id:"pc",e:"🍿",n:"Popcorn Besar Karamel",d:"Popcorn karamel renyah, ukuran besar.",p:55000},
+{id:"ps",e:"🍿",n:"Popcorn Asin Sedang",d:"Klasik, gurih, pas untuk berdua.",p:40000},
+{id:"cl",e:"🥤",n:"Cola Besar",d:"Dingin dengan es, 700 ml.",p:30000},
+{id:"ice",e:"🧋",n:"Es Teh Lemon",d:"Teh segar dengan lemon.",p:25000},
+{id:"nc",e:"🧀",n:"Nachos Keju",d:"Nachos dengan saus keju hangat.",p:45000},
+{id:"hd",e:"🌭",n:"Hot Dog Sosis Sapi",d:"Sosis sapi, saus mustard dan tomat.",p:38000},
+{id:"cb",e:"🎟️",n:"Paket Duo",d:"1 popcorn besar + 2 minuman.",p:95000,hot:1},
+{id:"wt",e:"💧",n:"Air Mineral",d:"Air mineral 600 ml.",p:12000}];
+
+/* Muat film, bioskop, dan menu dari Supabase (tabel films, theaters, food_items) */
+async function loadData(){
+  try{
+    const [a,b,c]=await Promise.all([sb("films?select=*&order=id"),sb("theaters?select=*&order=id"),sb("food_items?select=*&order=id")]);
+    if(a&&a.length)F.splice(0,F.length,...a.map((x,i)=>({id:i,db:x.id,t:x.title,y:x.year,d:x.duration,g:x.genre,r:x.rating,c:[x.color1,x.color2],ds:x.description})));
+    if(b&&b.length)T.splice(0,T.length,...b.map(x=>({db:x.id,n:x.name,a:x.address,p:x.price})));
+    if(c&&c.length)FB.splice(0,FB.length,...c.map(x=>({id:x.id,e:x.emoji,n:x.name,d:x.description,p:x.price,hot:x.hot?1:0})));
+  }catch(e){console.warn("Supabase tidak tersedia, memakai data bawaan.",e)}
+}
+
+const rp=n=>"Rp"+n.toLocaleString("id-ID");
+const S={v:"home",f:null,th:null,tm:null,seats:[],fb:{},pay:"Kartu Kredit",order:null,booked:new Set()};
+const hash=s=>{let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0};
+const times=(f,t)=>{const k=(f*2+t)%6;return [...new Set([0,1,2,3].map(i=>TM[(k+i)%6]))].sort()};
+const showsOf=f=>T.map((t,i)=>({i,t,ts:(f+i)%3===2&&i>3?[]:times(f,i)})).filter(x=>x.ts.length).slice(0,4+(f%3));
+const ROWS="ABCDEFGH".split(""),COLS=12;
+/* Kursi terisi = simulasi (hash) + kursi yang benar-benar sudah dipesan di Supabase (tabel booked_seats) */
+const taken=()=>{const key=S.f+"|"+S.th+"|"+S.tm,set=new Set(S.booked);ROWS.forEach(r=>{for(let c=1;c<=COLS;c++){if(hash(key+r+c)%100<32)set.add(r+c)}});return set};
+const seatPrice=id=>T[S.th].p+("GH".includes(id[0])?20000:0)+(FMT[(S.f+S.th)%6]==="IMAX"?15000:0);
+const tix=()=>S.seats.reduce((a,s)=>a+seatPrice(s),0);
+const food=()=>FB.reduce((a,x)=>a+(S.fb[x.id]||0)*x.p,0);
+const fee=()=>S.seats.length?2500*S.seats.length:0;
+const total=()=>tix()+food()+fee();
+const app=document.getElementById("app");
+function go(v){S.v=v;if(v==="home"){S.f=null;S.th=null;S.tm=null;S.seats=[];S.fb={};S.order=null;S.booked=new Set()}render();window.scrollTo(0,0)}
+function pick(f){S.f=f;S.v="film";render();scrollTo(0,0)}
+function show(th,tm){S.th=th;S.tm=tm;S.seats=[];S.booked=new Set();S.v="seat";render();scrollTo(0,0);loadBooked()}
+async function loadBooked(){
+  try{
+    const f=F[S.f],t=T[S.th];
+    const r=await sb(`booked_seats?select=seat&film_id=eq.${f.db??f.id}&theater_id=eq.${t.db??S.th}&show_date=eq.${today()}&show_time=eq.${encodeURIComponent(S.tm)}`);
+    S.booked=new Set((r||[]).map(x=>x.seat));
+    S.seats=S.seats.filter(s=>!S.booked.has(s));
+    if(S.v==="seat")render();
+  }catch(e){console.warn("Gagal memuat kursi terisi",e)}
+}
+function tgl(id){const i=S.seats.indexOf(id);if(i>=0)S.seats.splice(i,1);else if(S.seats.length<8)S.seats.push(id);render()}
+function qty(id,d){S.fb[id]=Math.max(0,(S.fb[id]||0)+d);render()}
+const poster=f=>`<div class="poster" style="background:linear-gradient(160deg,${f.c[0]},${f.c[1]})"><small>${f.r}</small>${f.t}</div>`;
+const steps=n=>`<div class="steps">${["Kursi","Makanan","Pembayaran","Tiket"].map((s,i)=>`<span class="st ${i===n?"on":i<n?"done":""}">${i+1}. ${s}</span>`).join("")}</div>`;
+const sum=(btn)=>{const f=F[S.f],t=T[S.th];return `<aside class="sum"><h3>${f.t}</h3><div class="r"><span>${t.n}</span></div><div class="r"><span>${FMT[(S.f+S.th)%6]}</span><span>${S.tm} WIB</span></div>
+<div class="r"><span>Kursi</span><span>${S.seats.join(", ")||"-"}</span></div>
+<div class="r"><span>Tiket (${S.seats.length})</span><span>${rp(tix())}</span></div>
+${food()?`<div class="r"><span>Makanan & minuman</span><span>${rp(food())}</span></div>`:""}
+${fee()?`<div class="r"><span>Biaya layanan</span><span>${rp(fee())}</span></div>`:""}
+<div class="r tot"><span>Total</span><span>${rp(total())}</span></div>${btn}</aside>`};
+
+let hi=0,flt="Semua";
+const GN=["Semua","Aksi","Animasi","Komedi","Drama","Horor","Perang"];
+const heroSec=()=>{const f=F[hi]||F[0];return `<section class="hero" id="hero" style="--c0:${f.c[0]}"><div><span class="eyebrow">SEDANG TAYANG • ${f.r}</span><h1>${f.t}</h1><div class="tags"><span class="tag">${f.g}</span><span class="tag">${f.d}</span><span class="tag">${f.y}</span></div><p>${f.ds.slice(0,150)}…</p><button class="btn" style="width:auto;padding:13px 30px" onclick="pick(${f.id})">🎟️ Pesan tiket</button><div class="dots">${F.map((x,i)=>`<button aria-label="${x.t}" class="${i===hi?"on":""}" onclick="setHero(${i})"></button>`).join("")}</div></div>${poster(f)}</section>`};
+function setHero(i){hi=i;const e=document.getElementById("hero");if(e)e.outerHTML=heroSec()}
+setInterval(()=>{if(S.v==="home"&&!document.hidden)setHero((hi+1)%F.length)},5000);
+function setFlt(g){flt=g;render()}
+const conf=()=>`<div aria-hidden="true">${Array.from({length:36},(_,i)=>`<i class="cn" style="left:${(i*37)%100}%;background:${["#e50914","#f5c518","#fff","#2fb36d"][i%4]};animation-delay:${(i%9)*.12}s;--d:${2+(i%5)*.4}s"></i>`).join("")}</div>`;
+function home(){const l=F.filter(f=>flt==="Semua"||f.g.includes(flt));return heroSec()+`<div class="chips">${GN.map(g=>`<button class="chip ${g===flt?"on":""}" onclick="setFlt('${g}')">${g}</button>`).join("")}</div><h2>Sedang tayang</h2><div class="grid">${l.map((f,i)=>`<button class="card" style="--i:${i}" onclick="pick(${f.id})">${poster(f)}<div class="m">${f.t}</div><div class="s">${f.g} • ${f.d}</div></button>`).join("")||"<p>Tidak ada film untuk genre ini.</p>"}</div>`}
+
+function film(){const f=F[S.f];return `<button class="back" onclick="go('home')">← Semua film</button>
+<div class="det">${poster(f)}<div><h1>${f.t}</h1><div class="tags"><span class="tag">${f.r}</span><span class="tag">${f.d}</span><span class="tag">${f.g}</span><span class="tag">${f.y}</span></div><p style="color:#cfcfd4;max-width:62ch">${f.ds}</p></div></div>
+<h2>Jadwal & lokasi di Jakarta</h2>${showsOf(S.f).map(x=>`<div class="th"><h3>${x.t.n}</h3><div class="a">${x.t.a}</div><div class="times">${x.ts.map((tm,j)=>`<button class="t" onclick="show(${x.i},'${tm}')"><b>${tm}</b><span>${FMT[(S.f+x.i)%6]} • ${rp(x.t.p)}</span></button>`).join("")}</div></div>`).join("")}`}
+
+function seat(){const tk=taken(),f=F[S.f];
+const rows=ROWS.map(r=>{let h=`<div class="row"><span class="rl">${r}</span>`;for(let c=1;c<=COLS;c++){const id=r+c,t=tk.has(id),s=S.seats.includes(id);if(c===7)h+='<span class="gap"></span>';h+=`<button class="seat ${"GH".includes(r)?"p":""} ${s?"sel":""}" ${t?"disabled":""} aria-label="Kursi ${id}${t?" terisi":""}" title="${id} • ${rp(seatPrice(id))}" aria-pressed="${s}" onclick="tgl('${id}')">${c}</button>`}return h+`<span class="rl">${r}</span></div>`}).join("");
+return `<button class="back" onclick="pick(${S.f})">← Ganti jadwal</button>${steps(0)}<div class="two"><div><h2>Pilih kursi</h2><div class="seatwrap"><div class="screen">LAYAR</div><div class="rows">${rows}</div></div>
+<div class="leg"><span><i style="background:#4a4a52"></i>Tersedia</span><span><i style="background:#7a5c14"></i>Premium (+Rp20.000)</span><span><i style="background:var(--red)"></i>Pilihanmu</span><span><i style="background:#202024"></i>Sudah terisi</span></div><p class="note" style="text-align:center">Maksimal 8 kursi per pemesanan.</p></div>
+${sum(`<button class="btn" ${S.seats.length?"":"disabled"} onclick="S.v='food';render();scrollTo(0,0)">${S.seats.length?"Lanjut ke makanan":"Pilih kursi dulu"}</button>`)}</div>`}
+
+function foodv(){return `<button class="back" onclick="S.v='seat';render()">← Ganti kursi</button>${steps(1)}<div class="two"><div><h2>Makanan & minuman</h2><div class="fb">${FB.map(x=>`<div class="f"><div class="e">${x.e}</div><b>${x.n}${x.hot?" ⭐":""}</b><div class="d">${x.d}</div><b>${rp(x.p)}</b><div class="q"><button aria-label="Kurangi ${x.n}" onclick="qty('${x.id}',-1)">−</button><b>${S.fb[x.id]||0}</b><button aria-label="Tambah ${x.n}" onclick="qty('${x.id}',1)">+</button></div></div>`).join("")}</div></div>
+${sum(`<button class="btn" onclick="S.v='pay';render();scrollTo(0,0)">${food()?"Lanjut ke pembayaran":"Lewati, ke pembayaran"}</button>`)}</div>`}
+
+function pay(){return `<button class="back" onclick="S.v='food';render()">← Makanan</button>${steps(2)}<div class="two"><div class="form" oninput="chk()"><h2>Pembayaran</h2><div class="cc"><div class="cf"><div class="emv"></div><span id="pt">Kartu Kredit</span></div><div class="num" id="pn">•••• •••• •••• ••••</div><div class="cf"><span id="pm">NAMA PEMEGANG</span><span id="pe">MM/YY</span></div></div>
+<div class="seg"><button class="${S.pay==="Kartu Kredit"?"on":""}" onclick="S.pay='Kartu Kredit';keep()">Kartu kredit</button><button class="${S.pay==="Kartu Debit"?"on":""}" onclick="S.pay='Kartu Debit';keep()">Kartu debit</button></div>
+<label for="cn">Nomor kartu</label><input id="cn" inputmode="numeric" autocomplete="cc-number" placeholder="1234 5678 9012 3456" maxlength="19" oninput="this.value=this.value.replace(/\\D/g,'').replace(/(.{4})/g,'$1 ').trim()">
+<label for="nm">Nama di kartu</label><input id="nm" autocomplete="cc-name" placeholder="Nama sesuai kartu">
+<div class="two2"><div><label for="ex">Berlaku hingga</label><input id="ex" inputmode="numeric" placeholder="MM/YY" maxlength="5" oninput="this.value=this.value.replace(/\\D/g,'').replace(/^(\\d{2})(\\d)/,'$1/$2')"></div><div><label for="cv">CVV</label><input id="cv" inputmode="numeric" type="password" placeholder="123" maxlength="4"></div></div>
+<label for="em">Email untuk e-tiket</label><input id="em" type="email" placeholder="nama@email.com">
+<div class="err" id="err" role="alert"></div><p class="note">Ini website demo. Jangan masukkan data kartu asli. Hanya 4 digit terakhir kartu yang disimpan di database.</p></div>
+${sum(`<button class="btn" id="pb" disabled onclick="submit()">Lengkapi semua data dulu</button>`)}</div>`}
+
+let draft={};
+function keep(){["cn","nm","ex","cv","em"].forEach(i=>{const e=document.getElementById(i);if(e)draft[i]=e.value});render();Object.keys(draft).forEach(i=>{const e=document.getElementById(i);if(e)e.value=draft[i]});chk()}
+function luhn(n){let s=0,d=false;for(let i=n.length-1;i>=0;i--){let x=+n[i];if(d){x*=2;if(x>9)x-=9}s+=x;d=!d}return s%10===0}
+
+/* Simpan pesanan ke Supabase: kursi dulu (UNIQUE mencegah dobel booking), lalu pesanan */
+async function submit(){
+  const g=i=>document.getElementById(i).value.trim();
+  const cn=g("cn").replace(/\s/g,""),nm=g("nm"),em=g("em");
+  const code=newCode();
+  const f=F[S.f],t=T[S.th],d=today(),b=document.getElementById("pb"),m=document.getElementById("err");
+  b.disabled=true;b.textContent="Memproses…";
+  const foodRows=FB.filter(x=>S.fb[x.id]).map(x=>({id:x.id,name:x.n,qty:S.fb[x.id],price:x.p}));
+  try{
+    await sb("booked_seats",{method:"POST",headers:{Prefer:"return=minimal"},body:JSON.stringify(
+      S.seats.map(s=>({film_id:f.db??f.id,theater_id:t.db??S.th,show_date:d,show_time:S.tm,seat:s,order_code:code})))});
+    await sb("orders",{method:"POST",headers:{Prefer:"return=minimal"},body:JSON.stringify({
+      code,film_id:f.db??f.id,theater_id:t.db??S.th,show_date:d,show_time:S.tm,seats:S.seats,food:foodRows,
+      total:total(),email:em,payment_method:S.pay,card_last4:cn.slice(-4)})});
+  }catch(e){
+    console.error(e);
+    if(e.status===409){
+      m.textContent="Maaf, ada kursi yang baru saja dipesan orang lain. Silakan pilih kursi lain.";
+      await loadBooked();S.v="seat";render();return;
+    }
+    m.textContent="Pesanan gagal disimpan ("+(e.status||"jaringan")+"). Coba lagi.";
+    b.disabled=false;b.textContent="Bayar "+rp(total());return;
+  }
+  saveOrderLocal({code,film:f.t,theater:t.n,fmt:FMT[(S.f+S.th)%6],date:d,time:S.tm,seats:[...S.seats],food:foodRows,total:total(),pay:S.pay,last:cn.slice(-4)||"0000",at:new Date().toISOString()});
+  S.order={code,last:cn.slice(-4)||"0000",em:em||"emailmu",total:total(),seats:[...S.seats],food:foodRows.map(x=>x.qty+"× "+x.name)};
+  draft={};S.v="done";render();scrollTo(0,0);
+}
+
+function done(){const o=S.order,f=F[S.f],t=T[S.th];return `${steps(3)}${conf()}<div class="ok"><div class="ck">✓</div><h2 style="margin-top:12px">Pembayaran berhasil</h2><p style="color:var(--mu)">E-tiket dikirim ke ${o.em}. Tunjukkan kode ini di loket.</p></div>
+<div class="ticket"><div class="top"><h2>${f.t}</h2><div>${t.n}</div></div><div class="bd">
+<div class="r"><span>Tanggal</span><span>Hari ini</span></div><div class="r"><span>Jam</span><span>${S.tm} WIB</span></div><div class="r"><span>Format</span><span>${FMT[(S.f+S.th)%6]}</span></div>
+<div class="r"><span>Kursi</span><b>${o.seats.join(", ")}</b></div>${o.food.length?`<div class="r"><span>Makanan</span><span style="text-align:right">${o.food.join("<br>")}</span></div>`:""}
+<div class="r"><span>Dibayar (${S.pay} •••• ${o.last})</span><b>${rp(o.total)}</b></div>
+<div class="bars"></div><div class="code">${o.code}</div></div></div>
+<div style="text-align:center"><button class="btn" style="max-width:260px" onclick="openTix()">🎟️ Lihat Tiket Saya</button><br><button class="back" style="margin-top:14px" onclick="go('home')">Pesan film lain</button></div>`}
+
+function cardPrev(){const v=i=>(document.getElementById(i)||{}).value||"";const n=v("cn").replace(/\s/g,"").slice(0,16).padEnd(16,"•").replace(/(.{4})/g,"$1 ").trim();const set=(i,t)=>{const e=document.getElementById(i);if(e)e.textContent=t};set("pn",n);set("pm",v("nm")||"NAMA PEMEGANG");set("pe",v("ex")||"MM/YY");set("pt",S.pay)}
+function chk(){const ok=["cn","nm","ex","cv","em"].every(i=>{const e=document.getElementById(i);return e&&e.value.trim()});const b=document.getElementById("pb");if(!b)return;b.disabled=!ok;b.textContent=ok?"Bayar "+rp(total()):"Lengkapi semua data dulu";const m=document.getElementById("err");if(m&&!m.dataset.keep)m.textContent=ok?"":"Semua kolom wajib diisi sebelum membayar.";cardPrev()}
+/* ================= TIKET SAYA ================= */
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LS="wc_orders";
+const mine=()=>{try{return JSON.parse(localStorage.getItem(LS)||"[]")}catch(e){return[]}};
+const saveMine=l=>{try{localStorage.setItem(LS,JSON.stringify(l.slice(0,50)))}catch(e){}};
+const MT={loading:false};
+function newCode(){const a=new Uint8Array(8);crypto.getRandomValues(a);return "WC"+Array.from(a,x=>"ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[x%32]).join("")}
+const fmtDT=d=>new Date(d).toLocaleString("id-ID",{timeZone:"Asia/Jakarta",weekday:"long",day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"}).replace(/\./g,":")+" WIB";
+const fmtD=d=>new Date(d+"T00:00:00Z").toLocaleDateString("id-ID",{timeZone:"UTC",weekday:"long",day:"numeric",month:"long",year:"numeric"});
+function mergeMine(rows){const m=new Map(mine().map(o=>[o.code,o]));rows.forEach(r=>m.set(r.code,r));const l=[...m.values()].sort((a,b)=>new Date(b.at)-new Date(a.at));saveMine(l);return l}
+function saveOrderLocal(o){mergeMine([o])}
+function fromServer(o){
+  const fi=Math.max(0,F.findIndex(x=>(x.db??x.id)===o.film_id)),ti=Math.max(0,T.findIndex((x,i)=>(x.db??i)===o.theater_id));
+  return {code:o.code,film:o.film_title,theater:o.theater_name,fmt:FMT[(fi+ti)%6],date:o.show_date,time:o.show_time,seats:o.seats||[],food:o.food||[],total:o.total,pay:o.payment_method,last:o.card_last4,at:o.created_at};
+}
+function openTix(){S.v="tix";render();scrollTo(0,0);loadTix()}
+async function loadTix(){
+  const codes=mine().map(o=>o.code).slice(0,20);if(!codes.length)return;
+  MT.loading=true;if(S.v==="tix")render();
+  try{const r=await sb("rpc/lookup_orders",{method:"POST",body:JSON.stringify({p_codes:codes,p_email:null})});if(r&&r.length)mergeMine(r.map(fromServer))}
+  catch(e){console.warn("Gagal menyinkronkan tiket",e)}
+  MT.loading=false;if(S.v==="tix")render();
+}
+async function lookupTix(){
+  const code=document.getElementById("lc").value.trim().toUpperCase(),em=document.getElementById("le").value.trim(),m=document.getElementById("lm");
+  if(!code||!em){m.textContent="Isi kode tiket dan email.";return}
+  m.textContent="Mencari…";
+  try{const r=await sb("rpc/lookup_orders",{method:"POST",body:JSON.stringify({p_codes:[code],p_email:em})});
+    if(r&&r.length){mergeMine(r.map(fromServer));render()}else m.textContent="Tiket tidak ditemukan. Periksa kode dan email.";
+  }catch(e){m.textContent="Gagal mencari tiket. Coba lagi."}
+}
+function tixCard(o){
+  const past=new Date(o.date+"T"+o.time+":00+07:00")<new Date(),food=o.food||[];
+  return `<div class="ticket"><div class="top"><span class="bdg ${past?"old":""}">${past?"Sudah lewat":"Akan tayang"}</span><h2>${esc(o.film)}</h2><div>${esc(o.theater)}</div></div><div class="bd">
+<div class="r"><span>Jadwal tayang</span><span style="text-align:right">${fmtD(o.date)}<br>${esc(o.time)} WIB</span></div>
+<div class="r"><span>Format</span><span>${esc(o.fmt)}</span></div>
+<div class="r"><span>Kursi</span><b>${(o.seats||[]).map(esc).join(", ")}</b></div>
+<div class="r"><span>Makanan</span><span style="text-align:right">${food.length?food.map(x=>`${+x.qty}× ${esc(x.name)} <small>(${rp(+x.qty*+x.price)})</small>`).join("<br>"):"Tidak ada"}</span></div>
+<div class="r"><span>Total (${esc(o.pay)} •••• ${esc(o.last)})</span><b>${rp(+o.total)}</b></div>
+<div class="r"><span>Dibeli pada</span><span style="text-align:right">${fmtDT(o.at)}</span></div>
+<div class="bars"></div><div class="code">${esc(o.code)}</div></div></div>`;
+}
+function tixv(){
+  const l=mine();
+  return `<button class="back" onclick="go('home')">← Beranda</button><h2>Tiket saya</h2>
+${MT.loading?'<p class="note">Menyinkronkan dengan server…</p>':""}
+${l.length?l.map(tixCard).join(""):'<div class="empty">Belum ada tiket di perangkat ini.<br>Beli tiket atau cari tiket lama di bawah.</div>'}
+<div class="form lk"><h3 style="margin:0 0 4px">Cari tiket lama</h3><p class="note" style="margin:0">Pernah beli di perangkat lain? Masukkan kode tiket dan email saat membeli.</p>
+<label for="lc">Kode tiket</label><input id="lc" placeholder="WCXXXXXXXX" autocomplete="off"><label for="le">Email</label><input id="le" type="email" placeholder="nama@email.com">
+<div class="err" id="lm" role="alert"></div><button class="btn" onclick="lookupTix()">Cari tiket</button></div>`;
+}
+
+function render(){app.innerHTML={home,film,seat,food:foodv,pay,done,tix:tixv}[S.v]();if(S.v==="pay")chk();const c=document.getElementById("mtc");if(c)c.textContent=mine().length||""}
+render();
+loadData().then(()=>{if(S.v==="home")render()});
+</script>
+</body>
+</html>
